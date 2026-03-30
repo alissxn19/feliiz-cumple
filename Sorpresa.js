@@ -23,13 +23,18 @@ const llama = document.querySelector(".llama");
 
 llama.addEventListener("click", () => {
   soplido.currentTime = 0;
-  soplido.play();
+  cancion.currentTime = 0;
 
-  llama.style.animation = "apagar 0.5s forwards"; // forwards -> Ultimo frame (to)
+  // 🔥 activar ambos en el click
+  soplido.play();
+  cancion.play().then(() => {
+    cancion.pause(); // la pausas al instante
+  });
+
+  llama.style.animation = "apagar 0.5s forwards";
 
   setTimeout(() => {
-    cancion.currentTime = 0;
-    cancion.play();
+    cancion.play(); // ahora sí funciona en móvil
     overlay.classList.add("hidden");
   }, 1000);
 });
